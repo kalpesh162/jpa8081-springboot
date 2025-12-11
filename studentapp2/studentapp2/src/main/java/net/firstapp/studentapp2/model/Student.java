@@ -1,6 +1,7 @@
 package net.firstapp.studentapp2.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Student implements Serializable {
     private int id;
@@ -28,5 +29,25 @@ public class Student implements Serializable {
 
     public String getCourse() { return course; }
     public void setCourse(String course) { this.course = course; }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(age, course, id, name);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		return age == other.age && Objects.equals(course, other.course) && id == other.id
+				&& Objects.equals(name, other.name);
+	}
+    
+    
 }
 

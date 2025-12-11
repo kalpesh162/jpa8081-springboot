@@ -2,38 +2,53 @@ package net.firstapp.studentapp2.service;
 
 import java.util.List;
 
-import net.firstapp.studentapp2.model.Student;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class StudentServiceImpl  implements StudentService{
+import net.firstapp.studentapp2.model.Student;
+import net.firstapp.studentapp2.repos.StudentRepository;
+
+@Service
+public class StudentServiceImpl implements StudentService {
+
+	private StudentRepository studentRepository;
 
 	@Override
 	public Student addStudent(Student student) {
-		// TODO Auto-generated method stub
-		return null;
+		return getStudentRepository().insertStudent(student);
 	}
 
 	@Override
 	public List<Student> getAllStudents() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return getStudentRepository().finaAllStudents();
 	}
 
 	@Override
 	public Student getStudentById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return getStudentRepository().findStudentById(id);
 	}
 
 	@Override
 	public Student updateStudent(int id, Student student) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return getStudentRepository().modifyStudent(id, student);
 	}
 
 	@Override
 	public void deleteStudent(int id) {
-		// TODO Auto-generated method stub
-		
+		getStudentRepository().removeStudent(id);
+
+	}
+
+	public StudentRepository getStudentRepository() {
+		return studentRepository;
+	}
+
+	@Autowired
+	public void setStudentRepository(StudentRepository studentRepository) {
+		this.studentRepository = studentRepository;
 	}
 
 }
