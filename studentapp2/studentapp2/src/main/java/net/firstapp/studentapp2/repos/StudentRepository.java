@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.firstapp.studentapp2.model.Student;
 
-public interface StudentRepository {
+public interface StudentRepository  {
 
 	Student insertStudent(Student student);
 
